@@ -100,13 +100,27 @@
                             </ul>
                             <div class="right-area header-action d-flex align-items-center max-un">
                                 <a href="login.html" class="login">Login</a>
-                                <a href="sign-up.html" class="cmn-btn">Sign Up
+                                <a href="{% url 'signup' %}" class="cmn-btn">Sign Up
                                     <i class="icon-d-right-arrow-2"></i>
                                 </a>
                             </div>
                         </div>
                     </nav>
                 </div>
+                 <!-- alert start -->
+                 {% if messages %}
+                 {% for message in messages %}
+                     <div class="alert alert-{{message.tags}}">
+                         <strong>{{ message }}</strong>
+                     </div>
+                 {% endfor %}
+             {% endif %}
+             <script>
+                 setTimeout (() => {
+                     $(".alert").alert("close");
+                 }, 4000)
+             </script>
+             <!-- alert end -->
             </div>
         </div>
     </header>
@@ -129,6 +143,39 @@
    <script src="{% static 'assets/js/plugin/wow.min.js' %}"></script>
    <script src="{% static 'assets/js/plugin/plugin.js' %}"></script>
    <script src="{% static 'assets/js/main.js' %}"></script>
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const dropdowns = document.querySelectorAll(".nav-item.dropdown");
+      
+        dropdowns.forEach(function (dropdown) {
+          const link = dropdown.querySelector(".nav-link");
+          const menu = dropdown.querySelector(".dropdown-menu");
+      
+          // Close each dropdown initially
+          menu.style.display = "none";
+      
+          link.addEventListener("click", function (event) {
+            event.preventDefault();
+      
+            // Toggle the display of the dropdown menu
+            if (menu.style.display === "block") {
+              menu.style.display = "none";
+            } else {
+              menu.style.display = "block";
+            }
+          });
+      
+          document.addEventListener("click", function (event) {
+            if (!dropdown.contains(event.target)) {
+              menu.style.display = "none";
+            }
+          });
+        });
+      });
+      
+      
+      
+   </script>
 </body>
 
 </html>
