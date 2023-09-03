@@ -99,10 +99,15 @@
                                 </li>
                             </ul>
                             <div class="right-area header-action d-flex align-items-center max-un">
-                                <a href="login.html" class="login">Login</a>
-                                <a href="{% url 'signup' %}" class="cmn-btn">Sign Up
-                                    <i class="icon-d-right-arrow-2"></i>
+                                {% if request.user.is_authenticated %}
+                                <a href="{% url 'logout' %}" class="btn btn-danger">Logout
                                 </a>
+                                {% else %}
+                                    <a href="{% url 'login' %}" class="login">Login</a>
+                                    <a href="{% url 'signup' %}" class="cmn-btn m-lg-3">Sign Up
+                                        <i class="icon-d-right-arrow-2"></i>
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
                     </nav>

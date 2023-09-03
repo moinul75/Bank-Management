@@ -8,16 +8,16 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-xl-6 order-xl-0 order-1">
                     <div class="sec-img d-rtl">
-                        <img src="{% static 'assets/images/login-reg-bg.png' %}" class="max-un" alt="image">
+                        <img src="{% static 'assets/images/login_reg.png' %}" class="max-un" alt="image">
                     </div>
                 </div>
                 <div class="col-xl-5">
                     <div class="section-text text-center">
                         <h5 class="sub-title">Account</h5>
                         <h2 class="title">Welcome to Paylio</h2>
-                        <p class="dont-acc">Already have an account? <a href="login.html">Login</a></p>
+                        <p class="dont-acc">Already have an account? <a href="{% url 'login' %}">Login</a></p>
                         <div class="reg-google">
-                            <a href="javascript:void(0)"><i class="fab fa-google"></i>Sign up with Google</a>
+                            <a href="javascript:void(0)"><i class="fas fa-google"></i>Sign up with Google</a>
                         </div>
                         <span class="or">Or Continue With</span>
                     </div>
@@ -30,19 +30,43 @@
                                    {{ form.username }}
                                 </div>
                                 <div class="single-input">
-                                    <label for="{{ form.email.id_for_label }}">Username</label>
+                                    <label for="{{ form.email.id_for_label }}">Email</label>
                                     {{ form.email }}
-                                 </div>
-                                 <div class="single-input">
+                                    {% if form.email.errors %}
+                                        <ul class="errorlist">
+                                            {% for error in form.email.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="single-input">
                                     <label for="{{ form.password1.id_for_label }}">Password</label>
                                     {{ form.password1 }}
-                                 </div>
-                                 <div class="single-input">
+                                    {% if form.password1.errors %}
+                                        <ul class="errorlist">
+                                            {% for error in form.password1.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                                
+                                <div class="single-input">
                                     <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
                                     {{ form.password2 }}
-                                 </div>
+                                    {% if form.password2.errors %}
+                                        <ul class="errorlist">
+                                            {% for error in form.password2.errors %}
+                                                <li>{{ error }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                                
                                
-                                <button class="cmn-btn w-100">Submit</button>
+                                <button class="cmn-btn w-100 mt-3">Submit</button>
                             </div>
                         </div>
                     </form>
