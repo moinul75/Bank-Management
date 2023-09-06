@@ -55,7 +55,31 @@ class Account(models.Model):
     
     
 #creeate model for KYC 
-
+class KYC(models.Model):
+    id = models.UUIDField(primary_key=True,unique=True,max_length=10,editable=False,default=uuid.uuid4)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    fullname  = models.CharField(max_length=255)
+    profile_image = models.ImageField(upload_to='profile_pic',default='defaults.png')
+    marital_status = models.CharField(max_length=20,choices=MATARIAL_STATUS)
+    gender = models.CharField(max_length=10,choices=GENDER)
+    identity_type = models.CharField(max_length=100,choices=IDENTITY_TYPES)
+    date_of_birth = models.DateField()
+    country = models.CharField(max_length=100)
+    state = models.CharField(max_length=150)
+    mobile = models.CharField(max_length=20)
+    signature = models.ImageField(upload_to='signature')
+    fax = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
+    
+    class Meta: 
+        ordering = ['-date']
+    
+    def __str__(self) -> str:
+        return self.fullname
+    
+    
+    
+    
     
     
 #signal for auto create account with signup 
