@@ -1,0 +1,64 @@
+{% extends 'partials/dashboard.html' %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Dashboard Section start -->
+    <section class="dashboard-section body-collapse pay step">
+        <div class="overlay pt-120">
+            <div class="container-fruid">
+                <div class="main-content">
+                    <div class="head-area d-flex align-items-center justify-content-between">
+                        <h4>Make a Payment</h4>
+                        <div class="icon-area">
+                            <img src="{% static 'assets/images/icon/support-icon.png' %}" alt="icon">
+                        </div>
+                    </div>
+                    <form  class="flex-fill" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group d-flex align-items-center">
+                            <img src="{% static 'assets/images/icon/search.png' %}" alt="icon">
+                            <input type="text" required name="account_number" placeholder="Enter user account number or account id here">
+                            <button type="submit"><i class="fas fa-search-right"></i></button>
+                        </div>
+                    </form>
+                    {% if query %}
+                     <p class="mb-4"> Your Search Result is here..You are search for {{ query }}</p>
+                    {% endif %}
+                    <div class="user-select">
+                        {% if query %}
+                        {% for account in account %}
+                        <div class="single-user">
+                            <div class="left d-flex align-items-center">
+                                <div class="img-area">
+                                    <img src="{{ account.user.kyc.profile_image.url }}" style="height: 100px; width: 100px; border-radius: 50%; object-fit: cover;" alt="image">
+                                </div>
+                                <div class="text-area">
+                                    <p>{{ account.user.kyc.fullname }}</p>
+                                    <p>{{ account.account_number }}</p>
+                                    <p>{{ account.user.email }}</p>
+                                   
+                                </div>
+                            </div>
+                            <div class="right">
+                                <a href="{% url 'amount_pay' account.account_number %}">Choose</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                           <div>
+                              <h4> No Account is founds</h4>
+                           </div>
+                        {% endif %}
+                    </div>
+                    <div class="footer-area mt-40">
+                        <a href="pay.html">Previous Step</a>
+                        <a href="pay-step-2.html" class="active">Next</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Dashboard Section end -->
+
+{% endblock %}

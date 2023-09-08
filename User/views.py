@@ -13,7 +13,7 @@ def Signup(request):
             user_form  = form.save()
             username = form.cleaned_data.get("username")  
             messages.success(request, f"hey {username}, your account is registered successfully...") 
-            return redirect('login')
+            return redirect('User:login')
     elif request.user.is_authenticated:
         messages.warning(request, f"you are already logged in")
         return redirect('index')
@@ -37,7 +37,7 @@ def Login(request):
             user = authenticate(email=email,password=password)
             if user is None:
                 messages.warning(request,f"Username or eamil is not found!!")
-                return redirect('login')
+                return redirect('User:login')
             else:
                 login(request,user)
                 messages.success(request, f"You Are Logged in Successfully..")
@@ -54,6 +54,6 @@ def Login(request):
 def LogOut(request):
     logout(request)
     messages.success(request,f"Logged Out Successfully")
-    return redirect('signup')
+    return redirect('User:signup')
 
 

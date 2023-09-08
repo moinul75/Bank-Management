@@ -22,8 +22,9 @@ from Core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/',include('User.urls')),
-    path('',views.index, name='index')
+    path('user/',include('User.urls')),
+    path('',include('Core.urls')),
+    path('account/',include('Account.urls'))
 ]
 
 if settings.DEBUG: 

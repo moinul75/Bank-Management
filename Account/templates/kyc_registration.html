@@ -1,0 +1,236 @@
+{% extends 'partials/dashboard.html' %}
+{% load static %}
+
+{% block content%}
+
+    <!-- Dashboard Section start -->
+    <section class="dashboard-section body-collapse account">
+        <div class="overlay pt-120">
+            <div class="container-fruid">
+                <div class="main-content">
+                    <div class="row">
+                        <div class="col-xxl-3 col-xl-4 col-md-6">
+                            <div class="owner-details">
+                                <div class="profile-area">
+                                    <div class="profile-img">
+                                        <img src="{{ Kyc.profile_image.url }}" style="width: 200px;height: 200px; border-radius:50%;object-fit: cover;" alt="image">
+                                    </div>
+                                    <div class="name-area">
+                                        <h6>{{ Kyc.fullname }}</h6>
+                                        <p class="active-status">Active</p>
+                                    </div>
+                                </div>
+                                <div class="owner-info">
+                                    <ul>
+                                        <li>
+                                            <p>Account ID:</p>
+                                            <span class="mdr">Rex49484</span>
+                                        </li>
+                                        <li>
+                                            <p>Joined:</p>
+                                            <span class="mdr">{{ Kyc.date }}</span>
+                                        </li>
+                                        <li>
+                                            <p>Confirm status:</p>
+                                            <span class="mdr">80%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="owner-action">
+                                    <a href="javascript:void(0)">
+                                        <img src="{% static 'assets/images/icon/logout.png' %}" alt="image">
+                                        Logout
+                                    </a>
+                                    <a href="javascript:void(0)" class="delete">
+                                        <img src="{% static 'assets/images/icon/delete-2.png' %}" alt="image">
+                                        Delete Account
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-9 col-xl-8">
+                            <div class="tab-main">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">Kyc Registration</button>
+                                    </li>
+                                   
+                                </ul>
+                                <div class="tab-content mt-40">
+                                    <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
+                                        <form method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="upload-avatar">
+                                                <div class="avatar-left d-flex align-items-center">
+                                                    <div class="profile-img">
+                                                        <img src="{{ Kyc.profile_image.url }}" style="height: 100px; width: 100px; border-radius: 50%; object-fit: cover;" alt="image">
+                                                    </div>
+                                                    
+                                                    <div class="instraction">
+                                                        <h6>Your Avatar</h6>
+                                                        <p>Profile picture size: 100px x 100px</p>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <div class="avatar-right">
+                                                    {{form.profile_image}}
+                                                    {% for error in form.profile_image.errors %}
+                                                    <p class="text-danger"><b>{{ error }}</b></p>
+                                                   {% endfor %}
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="{{ form.fullname.id_for_label }}">Full Name</label>
+                                                        {{form.fullname}}
+                                                        {% for error in form.fullname.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                  
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="{{ form.fullname.id_for_label }}">Mobile</label>
+                                                        {{form.mobile}}
+                                                        {% for error in form.mobile.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="{{ form.city.id_for_label }}">City</label>
+                                                        {{form.city}}
+                                                        {% for error in form.city.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="{{ form.state.id_for_label }}">State</label>
+                                                        {{form.state}}
+                                                        {% for error in form.sate.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="{{ form.country.id_for_label }}">Country</label>
+                                                        {{form.country}}
+                                                        {% for error in form.country.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="single-input">
+                                                        <label for="{{ form.fax.id_for_label }}">Fax</label>
+                                                        {{form.fax}}
+                                                        {% for error in form.fax.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="single-input">
+                                                        <label for="{{ form.date_of_birth.id_for_label }}">Date Of Birth</label>
+                                                        {{form.date_of_birth}}
+                                                        {% for error in form.date_of_birth.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        {{form.gender}}
+                                                        {% for error in form.gender.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        {{form.marital_status}}
+                                                        {% for error in form.marital_status.errors %}
+                                                         <p class="text-danger"><b>{{ error }}</b></p>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="single-input">
+                                                        {{form.identity_type}}
+                                                        {% for error in form.identity_type.errors %}
+                                                        <span class="text-danger">{{ error }}</span>
+                                                        {% endfor %}
+                                                       
+                                                    </div>
+                                                </div>
+                                                    <div class="col-md-6 mt-2">
+                                                        <div class="single-input" style="padding-top:50px;">
+                                                            <label for="{{ form.indetity_image.id_for_label }}">Identity Image</label>
+                                                            {{ form.indetity_image }}
+                                                            {% if Kyc.indetity_image %}
+                                                            <img src="{{ Kyc.indetity_image.url }}" style=" padding-top: 20px;width: 100%;height: 200px; border-radius:10px;object-fit: cover" alt="image">
+                                                            {% else %}
+                                                                <p style="padding-top:20px ;"><b>No Uploaded Image here</b></p>
+                                                            {% endif %} 
+                                                            {% for error in form.indetity_image.errors %}
+                                                            <p class="text-danger"><b>{{ error }}</b></p>
+                                                            {% endfor %}
+                                                         
+                                                        </div>
+                                                   
+                                                    </div>
+                                                    <div class="col-md-6 mt-2">
+                                                        <div class="single-input"  style="padding-top:50px;">
+                                                            <label for="{{ form.signature.id_for_label }}">Signature Image</label>
+                                                            {{form.signature }}
+                                                            {% if Kyc.signature %}
+                                                            <img src="{{ Kyc.signature.url }}" style=" padding-top: 20px;width: 100%;height: 200px; border-radius:10px;object-fit: cover;" alt="image">
+                                                            {% else %}
+                                                              <p style="padding-top:20px ;"><b>No Uploaded Image here</b></p>
+                                                            {% endif %}
+                                                            {% for error in form.signature.errors %}
+                                                             <p class="text-danger"><b>{{ error }}</b></p>
+                                                            {% endfor %}
+                                                                                
+                                                        </div>
+                                                    </div>
+                                              
+                                                <div class="col-md-12 mt-4">
+                                                    <div class="btn-border">
+                                                        <button class="cmn-btn" type="submit">Submit KYC</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Dashboard Section end -->
+
+    
+
+
+{% endblock %}

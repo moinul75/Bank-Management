@@ -100,11 +100,11 @@
                             </ul>
                             <div class="right-area header-action d-flex align-items-center max-un">
                                 {% if request.user.is_authenticated %}
-                                <a href="{% url 'logout' %}" class="btn btn-danger">Logout
+                                <a href="{% url 'User:logout' %}" class="btn btn-danger">Logout
                                 </a>
                                 {% else %}
-                                    <a href="{% url 'login' %}" class="login">Login</a>
-                                    <a href="{% url 'signup' %}" class="cmn-btn m-lg-3">Sign Up
+                                    <a href="{% url 'User:login' %}" class="login">Login</a>
+                                    <a href="{% url 'User:signup' %}" class="cmn-btn m-lg-3">Sign Up
                                         <i class="icon-d-right-arrow-2"></i>
                                     </a>
                                 {% endif %}
